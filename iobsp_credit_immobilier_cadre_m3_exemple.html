@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — trois dossiers, trois blocages</title><style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+td{vertical-align:top}td:first-child{white-space:nowrap}.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}.tri .h,.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;text-transform:uppercase;letter-spacing:.05em}.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}@media(max-width:640px){.tri,.duo{grid-template-columns:1fr}}.enc,tr,.tri,.duo{break-inside:avoid}
+.enc p,.cols p{margin:6px 0}.enc.ok{background:#F1F7F3;border-left-color:var(--ok)}.enc.ok .t{color:var(--ok)}
+.cols{display:grid;gap:14px;margin:16px 0}.cols.c2{grid-template-columns:1fr 1fr}.cols.c3{grid-template-columns:repeat(3,1fr)}.cols.c4{grid-template-columns:repeat(4,1fr)}.cols.c5,.cols.c6{grid-template-columns:repeat(3,1fr)}
+.cols>div>.enc{margin:0;height:100%}.cols table{margin:0}
+p.src{font-size:12.5px;color:var(--gris-moyen);line-height:1.5}
+td,th{vertical-align:top}
+@media(max-width:760px){.cols.c2,.cols.c3,.cols.c4,.cols.c5,.cols.c6{grid-template-columns:1fr}}
+table.frise{table-layout:fixed;font-size:13px}.enc h3{margin:2px 0 8px;font-family:Georgia,serif;color:var(--prune-fonce);font-size:16px}
+.cols>div>.enc{margin:0}
+</style></head><body>
+<header class="bandeau"><div class="wrap"><div class="chapitre">IOBSP NIVEAU 2 · JOURNÉE 5 · CRÉDIT IMMOBILIER (1/3) — MODULE 3</div><h1>Exemple commenté — trois dossiers, trois blocages</h1><p class="sous">Ce que la publicité foncière décide vraiment, et ce qu&#x27;elle ne décide pas</p></div></header>
+<main class="wrap">
+<p>Le module énonce des principes. Cet exemple les confronte à trois dossiers qui se bloquent — et dans les trois cas, <b>la cause est la même</b>: quelqu&#x27;un a cru que la publicité foncière faisait autre chose que ce qu&#x27;elle fait.</p>
+<table><tbody><tr><td></td><td><b>Dossier 1 — Deux acquéreurs pour le même appartement</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><p><b>La publicité foncière n&#x27;est pas constitutive de droits</b></p></div><h3>Qui est propriétaire ?</h3><div class="enc"><span class="t">LES FAITS</span><p><b>M. Vaugelas</b> vend son appartement à <b>M me Ferrière</b> par acte authentique du <b>12 mars</b>. Puis, par une manœuvre frauduleuse, il vend le même bien à <b>M. Delaunay</b> par acte authentique du <b>3 avril</b>.</p><p>L&#x27;acte de M. Delaunay est publié le <b>9 avril</b>. Celui de M me Ferrière, retardé par une formalité manquante, n&#x27;est publié que le <b>22</b> <b>avril</b>.</p></div><p><b>QUI L&#x27;EMPORTE ?</b></p><p><b>M. Delaunay</b>, qui a acheté en second mais publié en premier.</p><div class="enc al"><span class="t">POURQUOI — ET POURQUOI LA FORMULATION COMPTE</span><p>Les <b>deux ventes sont valables entre les parties</b>: la publication n&#x27;a rendu M. Delaunay propriétaire ni plus ni moins que M me Ferrière.<br><b>Ce que la publication lui donne, c&#x27;est l&#x27;OPPOSABILITÉ.</b> M me Ferrière est, à son égard, un <b>tiers</b> — et un droit non publié ne s&#x27;oppose pas aux tiers.<br><b>La publicité foncière ne fabrique pas le droit: elle décide qui peut s&#x27;en prévaloir.</b></p></div><div class="enc ci"><p><b>CE QU&#x27;IL RESTE À M ME FERRIÈRE</b></p><p>Un recours <b>contre le vendeur</b>, sur le terrain de la responsabilité et de la fraude. Mais elle ne récupère pas l&#x27;appartement: c&#x27;est le prix de la publication tardive.</p></div></div>
+<table><tbody><tr><td></td><td><b>Dossier 2 — La vente qui ne peut pas être publiée</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><p><b>L&#x27;effet relatif — article 3 du décret du 4 janvier 1955</b></p></div><h3>Un maillon manque dans la chaîne</h3><div class="enc"><span class="t">LES FAITS</span><p><b>M me Kaczmarek</b> vend la maison qu&#x27;elle a héritée de sa mère, décédée en 2019. Vous avez monté le financement de l&#x27;acquéreur, l&#x27;offre est acceptée, la date de signature est fixée.</p><p>Huit jours avant, le notaire annonce que <b>l&#x27;acte ne pourra pas être publié</b>. La succession de la mère n&#x27;a jamais donné lieu à <b>attestation notariée de propriété publiée</b>.</p></div><span class="t">LE PRINCIPE EN CAUSE</span><p>L&#x27;article 3 du décret pose qu&#x27;<b>aucun acte sujet à publicité ne peut être publié si le titre du disposant, ou du dernier titulaire, n&#x27;a pas été</b> <b>préalablement publié</b>.</p><p>Or M me Kaczmarek dispose d&#x27;un bien dont <b>son propre titre n&#x27;a jamais été publié</b>. La chaîne est rompue: sa vente est irrecevable à la publication tant que la situation n&#x27;est pas régularisée.</p><div class="enc al"><span class="t">LA CAUSE CLASSIQUE DE BLOCAGE — ET CE QUE VOUS DEVEZ EN DIRE</span><p>Ce n&#x27;est <b>pas un retard administratif</b>, et cela ne se règle pas par un coup de téléphone. Il faut <b>reconstituer la chaîne</b>: régler la succession, faire établir et publier l&#x27;attestation notariée. Le délai se compte en semaines, parfois en mois.<br><b>Conséquence pour votre dossier:</b> l&#x27;offre de prêt a une durée de validité. Si la régularisation dépasse ce délai, il faudra une nouvelle offre — et le taux ne sera plus le même.</p></div><div class="enc ok"><span class="t">LE RÉFLEXE À PRENDRE</span><p>Lorsqu&#x27;un bien provient d&#x27;une <b>succession</b>, d&#x27;une <b>donation-partage</b> ou d&#x27;une <b>indivision ancienne</b>, demander tôt au notaire si la <b>chaîne des titres publiés est complète</b>. C&#x27;est une question de trois lignes qui peut sauver un dossier.</p></div></div>
+<table><tbody><tr><td></td><td><b>Dossier 3 — Deux inscriptions le même jour</b></td></tr></tbody></table>
+<div class="enc"><div class="enc"><p><b>Le rang — la règle qui surprend</b></p></div><h3>Qui sera payé en premier ?</h3><div class="enc"><span class="t">LES FAITS</span><p>Sur le même immeuble, deux formalités sont déposées <b>le mardi 14 avril</b>.</p><table><thead><tr><th><b>Créancier</b></th><th><b>Date de son titre</b></th><th><b>Heure du dépôt</b></th></tr></thead><tbody><tr><td><b>Banque A</b></td><td><b>Acte du 6 avril</b></td><td>16 h 10</td></tr><tr><td><b>Banque B</b></td><td>Acte du 10 avril</td><td><b>9 h 05</b></td></tr></tbody></table></div><span class="t">LE RÉFLEXE NATUREL — ET IL EST FAUX</span><p>On croit spontanément que la <b>banque B</b> l&#x27;emporte: elle a déposé sept heures plus tôt.</p><span class="t">LA RÈGLE APPLICABLE</span><p>Lorsque plusieurs formalités sont requises <b>le même jour</b> sur le <b>même immeuble</b>, celle qui est requise en vertu du <b>titre dont la date est</b> <b>la plus ancienne</b> est réputée d&#x27;un rang antérieur — <b>quel que soit l&#x27;ordre du registre des dépôts</b>.</p><div class="enc al"><span class="t">LE VERDICT</span><p><b>C&#x27;est la banque A qui prime</b>, avec un titre du 6 avril, bien qu&#x27;elle ait déposé en fin de journée.<br><b>Ce n&#x27;est pas l&#x27;heure de dépôt qui départage, c&#x27;est l&#x27;ancienneté du titre.</b></p></div><div class="enc"><span class="t">CE QUE LE RANG DÉCIDE CONCRÈTEMENT</span><p>En cas de vente forcée, <b>le premier inscrit est payé d&#x27;abord</b> sur le prix. Le second ne reçoit que ce qui reste. <b>Le dernier ne reçoit</b> <b>souvent rien.</b><br>Sur un bien vendu 240 000 € grevé de 200 000 € au premier rang et 90 000 € au second, le second créancier encaisse au mieux 40 000 € — <b>et perd le reste</b>.</p></div></div>
+<table><tbody><tr><td></td><td><b>Ce que ces trois dossiers ont en commun</b></td></tr></tbody></table>
+<table><thead><tr><th><b>Dossier</b></th><th><b>Ce qu&#x27;on avait cru</b></th><th><b>La règle réelle</b></th></tr></thead><tbody><tr><td><b>Deux acquéreurs</b></td><td>« J&#x27;ai signé le premier, donc je suis propriétaire»</td><td>La publication décide de l&#x27;<b>opposabilité</b>. Le premier publié l&#x27;emporte sur le premier signé</td></tr><tr><td><b>La chaîne rompue</b></td><td>« C&#x27;est un simple retard de formalité»</td><td><b>Effet relatif</b>: sans titre du disposant publié, la publication est <b>refusée</b>. La vente ne peut pas aboutir</td></tr><tr><td><b>Le même jour</b></td><td>« J&#x27;ai déposé le premier, j&#x27;ai le premier rang»</td><td>C&#x27;est la <b>date du titre</b> qui prime, pas l&#x27;heure du dépôt</td></tr></tbody></table>
+<div class="enc"><p><b>OÙ S&#x27;ARRÊTE CE MODULE, ET OÙ REPREND LA JOURNÉE 6</b></p><p><b>Ici</b>: le mécanisme — le service, le fichier, l&#x27;inscription, le rang, l&#x27;opposabilité.<br><b>Journée 6</b>: le choix et le coût de la garantie — quelle sûreté retenir, et combien elle coûte (émoluments, taxe de publicité foncière, contribution de sécurité immobilière, mainlevée, au barème 2026).</p></div>
+<div class="enc al"><span class="t">UN AVERTISSEMENT, SI VOUS FAITES DES RECHERCHES PERSONNELLES</span><p>Vous trouverez en ligne de nombreux articles décrivant les <b>articles 710-1 et suivants du code civil</b> comme le droit de la publicité foncière.</p><div class="enc al"><p>Ils décrivent l&#x27;ordonnance du 19 juin 2024, qui devait abroger le décret de 1955 et codifier la matière — mais qui est <b>DEVENUE</b> <b>CADUQUE</b>: le projet de loi de ratification n&#x27;a pas été déposé avant le 20 septembre 2024. Elle n&#x27;entrera pas en vigueur. À l&#x27;examen comme en pratique, le texte applicable reste le décret du 4 janvier 1955.</p></div></div>
+<p><i>Sources vérifiées au 19 août 2026: décret n° 55-22 du 4 janvier 1955 portant réforme de la publicité foncière, dont son article 3 (effet relatif) et la disposition réglant le rang</i></p>
+<div class="enc"><p><i>des formalités du même jour, modifiée par l&#x27;ordonnance n° 2021-1192 du 15 septembre 2021 · ordonnance n° 2024-562 du 19 juin 2024, caduque (Constitution, art. 38) —</i> <i>vérifié le 18 novembre 2026 ·</i></p></div>
+</main>
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</body></html>
